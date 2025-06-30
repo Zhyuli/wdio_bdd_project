@@ -2,6 +2,7 @@ const { $ } = require("@wdio/globals");
 const Page = require("./page");
 
 class FavoritesPage extends Page {
+
   get favoriteCard() {
     return $('[data-test^="favorite-"]');
   }
@@ -20,13 +21,32 @@ class FavoritesPage extends Page {
   }
 
   async removeFromFavorites() {
-    await this.removeBtn.click();
+    // await this.removeBtn.click();
+     console.log('Waiting for delete button...');
+ await this.removeBtn.waitForDisplayed({ timeout: 15000 });
+
+   const isDisplayed = await this.removeBtn.isDisplayed();
+  console.log('Delete button is displayed:', isDisplayed);
+
+  await this.removeBtn.click();
   }
 
   async isFavoritesListEmpty() {
-    const isExisting = await this.favoriteItemCard.isExisting();
-    expect(isExisting).toBe(false);
+    await browser.waitUntil(
+    async () => !(await this.favoriteCard.isExisting()),
+    {
+      timeout: 10000,
+      timeoutMsg: "Favorite card did not disappear after removing.",
+    }
+  );
+
+  const isExisting = await this.favoriteCard.isExisting();
+  expect(isExisting).toBe(false);
+    
+   
   }
+
+
 }
 
 module.exports = new FavoritesPage();

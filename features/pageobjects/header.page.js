@@ -1,5 +1,6 @@
 const { $ } = require("@wdio/globals");
 const Page = require("./page");
+const { waitForToastToDisappear } = require("../utils/toastUtils");
 
 class HeaderPage extends Page  {
 
@@ -11,6 +12,7 @@ class HeaderPage extends Page  {
 }
 
  async openFavorites() {
+    await waitForToastToDisappear();
     await this.userNameLabel.waitForClickable({ timeout: 5000 });
     await this.userNameLabel.click();
 

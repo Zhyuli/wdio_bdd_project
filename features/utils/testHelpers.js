@@ -1,9 +1,12 @@
-// utils/testHelpers.js
-const LoginPage = require('../pageobjects/login.page');
-const AccountPage = require('../pageobjects/account.page');
-const HomePage = require('../pageobjects/home.page');
-const ProductDetailsPage = require('../pageobjects/productDetails.page');
-const { validUser } = require('../data/loginData');
+
+const LoginPage = require("../pageobjects/login.page");
+const AccountPage = require("../pageobjects/account.page");
+const HomePage = require("../pageobjects/home.page");
+const ProductDetailsPage = require("../pageobjects/productDetails.page");
+const HeaderPage = require("../pageobjects/header.page");
+const FavoritesPage = require("../pageobjects/favorites.page");
+
+const { validUser } = require("../data/loginData");
 
 async function loginAndClickOnProduct() {
   await LoginPage.open();
@@ -11,7 +14,6 @@ async function loginAndClickOnProduct() {
   await AccountPage.isAtAccountPage();
   await AccountPage.goToHomePage();
   await HomePage.clickOnProduct();
- 
 }
 async function assertUnauthorizedFavoriteMessage() {
   await expect(ProductDetailsPage.toastError).toBeDisplayed();
@@ -31,8 +33,16 @@ async function assertFavoriteSuccessMessage() {
 }
 
 
+async function goToFavorites() {
+  await HeaderPage.openFavorites();
+  await FavoritesPage.isAtFavoritesPage();
+}
+
+
+
 module.exports = {
   loginAndClickOnProduct,
   assertFavoriteSuccessMessage,
-  assertUnauthorizedFavoriteMessage
+  assertUnauthorizedFavoriteMessage,
+  goToFavorites,
 };

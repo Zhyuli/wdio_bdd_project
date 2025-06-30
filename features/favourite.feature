@@ -14,10 +14,10 @@ Scenario: Adding a product to favourites when logged in
   And adds the product to favourites
   Then the message "Product added to your favorite list." is displayed
 
- 
-# Scenario: Deleting one product from favorites
-#   Given the user is logged in and has a product in the Favorites list
-#   And the user is on the Favorites page
-#   When the user clicks the "Remove from favorites" icon on the product
-#   Then the product is removed from the Favorites list
+ @smoke
+Scenario: Deleting one product from favorites
+  Given the user is logged in and has a product in the Favorites list
+  And the user is on the Favorites page
+  When the user clicks the "Remove from favorites" icon on the product
+  Then the product is removed from the Favorites list
  
