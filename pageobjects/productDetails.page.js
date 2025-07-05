@@ -24,11 +24,7 @@ class ProductDetailsPage extends Page {
 
   async addToFavorites() {
     await this.addToFavoritesButton.click();
-await waitForToastToDisappear();
-    // const toast = await this.toastSuccess;
-    // if (await toast.isDisplayed()) {
-    //   await toast.waitForDisplayed({ reverse: true, timeout: 15000 });
-    // }
+    await waitForToastToDisappear();
   }
 
   async isAtProductPage() {
@@ -41,7 +37,6 @@ await waitForToastToDisappear();
   }
 
   async open(productId) {
-    // const productId = '01JYVGV7NND5XCEKKNFC61P1TM';
     return super.open(`/product/${productId}`);
   }
 }

@@ -5,13 +5,19 @@ async function waitForToastToDisappear() {
   const toast = ProductDetailsPage.toastSuccess;
 
   try {
-     console.log("[waitForToastToDisappear]:Waiting for toast to become visible...");
+    console.log(
+      "[waitForToastToDisappear]:Waiting for toast to become visible..."
+    );
     await toast.waitForDisplayed({ timeout: 20000 });
-    console.log("[waitForToastToDisappear]:Toast became visible. Waiting for it to disappear...");
+    console.log(
+      "[waitForToastToDisappear]:Toast became visible. Waiting for it to disappear..."
+    );
     await toast.waitForDisplayed({ reverse: true, timeout: 20000 });
-      console.log("[waitForToastToDisappear]:Toast disappeared successfully.");
+    console.log("[waitForToastToDisappear]:Toast disappeared successfully.");
   } catch (e) {
-    console.warn("[waitForToastToDisappear]:Toast was not visible or did not disappear");
+    console.warn(
+      "[waitForToastToDisappear]:Toast was not visible or did not disappear"
+    );
   }
 }
 

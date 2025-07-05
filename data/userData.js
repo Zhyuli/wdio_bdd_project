@@ -9,7 +9,7 @@ module.exports = {
     state: "Kyiv",
     country: "Ukraine",
     phone: "1234567890",
-    email: "john2.doe@example.com",
+    email: "john.doe@example.com",
     password: "qwerty123$P"
   }
 };

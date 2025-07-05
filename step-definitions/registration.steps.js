@@ -2,8 +2,8 @@ const { Given, When, Then } = require('@wdio/cucumber-framework');
 const HomePage = require("../pageobjects/home.page");
 const LoginPage = require("../pageobjects/login.page");
 const RegisterPage = require('../pageobjects/register.page.js');
-const AccountPage = require('../pageobjects/account.page')
-const { validUser } = require('../data/userData');
+const AccountPage = require('../pageobjects/account.page');
+const { validUser } = require('../data/userData.js');
 
 Given("the user opens the website", async () => {
   await HomePage.open();

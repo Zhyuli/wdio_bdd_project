@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 exports.config = {
   //
@@ -54,29 +54,28 @@ exports.config = {
     {
       browserName: "chrome",
       "goog:chromeOptions": {
-        args: [  "--headless","--disable-gpu", "--window-size=1920,1080"],
+        args: ["--headless", "--disable-gpu", "--window-size=1920,1080"],
       },
-    
     },
     {
       browserName: "firefox",
       "moz:firefoxOptions": {
         args: [
-   '-headless',
-    '--disable-extensions',
-    '--disable-sync', 
-    '-safe-mode',    
-    '--width=1920',
-    '--height=1080',
-  ],
-   
+          "-headless",
+          "--disable-extensions",
+          "--disable-sync",
+          "-safe-mode",
+          "--width=1920",
+          "--height=1080",
+        ],
+
         prefs: {
           // Disable form autofill
           "signon.rememberSignons": false,
           "browser.formfill.enable": false,
           "browser.urlbar.suggest.history": false,
           "browser.urlbar.suggest.bookmark": false,
-           "layout.css.devPixelsPerPx": "1.0"
+          "layout.css.devPixelsPerPx": "1.0",
         },
       },
     },
@@ -158,7 +157,7 @@ exports.config = {
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
     // <string[]> (file/dir) require files before executing features
-    require: ["./features/step-definitions/**/*.js"],
+    require: ["./step-definitions/**/*.js"],
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -262,11 +261,14 @@ exports.config = {
   // beforeScenario: function (world, context) {
   // },
   beforeScenario: function (world, context) {
-  browser.waitUntil(() => browser.execute(() => document.readyState === 'complete'), {
-    timeout: 10000,
-    timeoutMsg: 'Page did not load within timeout',
-  });
-},
+    browser.waitUntil(
+      () => browser.execute(() => document.readyState === "complete"),
+      {
+        timeout: 10000,
+        timeoutMsg: "Page did not load within timeout",
+      }
+    );
+  },
   /**
    *
    * Runs before a Cucumber Step.
@@ -277,11 +279,14 @@ exports.config = {
   // beforeStep: function (step, scenario, context) {
   // },
   beforeStep: function (step, scenario, context) {
-  browser.waitUntil(() => browser.execute(() => document.readyState === 'complete'), {
-    timeout: 15000,
-    timeoutMsg: 'Page did not load within timeout',
-  });
-},
+    browser.waitUntil(
+      () => browser.execute(() => document.readyState === "complete"),
+      {
+        timeout: 15000,
+        timeoutMsg: "Page did not load within timeout",
+      }
+    );
+  },
   /**
    *
    * Runs after a Cucumber Step.
@@ -295,22 +300,22 @@ exports.config = {
    */
   // afterStep: function (step, scenario, result, context) {
   // },
- 
-  afterStep: async function (step, scenario, result, context) {
-  if (!result.passed) {
-    // Insure the folder for screenshots exists
-    const screenshotsDir = path.resolve(__dirname, 'screenshots');
-    if (!fs.existsSync(screenshotsDir)) {
-      fs.mkdirSync(screenshotsDir);
-    }
 
-    // Save screenshot with scenario name and timestamp
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const filename = `${scenario.name}-${timestamp}.png`;
-    await browser.saveScreenshot(`${screenshotsDir}/${filename}`);
-    console.log(`Screenshot is saved: ${screenshotsDir}/${filename}`);
-  }
-},
+  afterStep: async function (step, scenario, result, context) {
+    if (!result.passed) {
+      // Insure the folder for screenshots exists
+      const screenshotsDir = path.resolve(__dirname, "screenshots");
+      if (!fs.existsSync(screenshotsDir)) {
+        fs.mkdirSync(screenshotsDir);
+      }
+
+      // Save screenshot with scenario name and timestamp
+      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+      const filename = `${scenario.name}-${timestamp}.png`;
+      await browser.saveScreenshot(`${screenshotsDir}/${filename}`);
+      console.log(`Screenshot is saved: ${screenshotsDir}/${filename}`);
+    }
+  },
 
   /**
    *

@@ -9,9 +9,10 @@ const {
   loginAndClickOnProduct,
   assertFavoriteSuccessMessage,
   assertUnauthorizedFavoriteMessage,
-
   goToFavorites,
 } = require("../utils/testHelpers");
+
+
 
 //Scenario: Attempting to add a product to favourites without being logged in
 
