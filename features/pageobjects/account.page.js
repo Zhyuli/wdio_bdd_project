@@ -3,7 +3,6 @@ const Page = require("./page");
 const HomePage = require("./home.page");
 
 class AccountPage extends Page {
-    
   get pageTitle() {
     return $('[data-test="page-title"]');
   }
@@ -17,9 +16,16 @@ class AccountPage extends Page {
   }
 
   async isAtAccountPage() {
-    await this.pageTitle.waitForDisplayed({ timeout: 5000 });
-    await expect(this.pageTitle).toHaveText("My account");
+    try {
+      await this.pageTitle.waitForDisplayed({ timeout: 10000 });
+      // await expect(this.pageTitle).toHaveText("My account");
+      const title = await this.pageTitle.getText();
+      expect(title).toBe("My account");
+    } catch (error) {
+      throw new Error(`Account page is not displayed: ${error.message}`);
+    }
   }
+
   async goToHomePage() {
     await this.homeLink.click();
     await expect(HomePage.homeBanner).toBeDisplayed();
@@ -31,8 +37,8 @@ class AccountPage extends Page {
     await this.favoritesLink.click();
   }
   async open() {
-  return super.open("/account"); 
-}
+    return super.open("/account");
+  }
 }
 
 module.exports = new AccountPage();

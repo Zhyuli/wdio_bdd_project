@@ -27,7 +27,7 @@ Then("submits the registration form", async () => {
 });
 
 Then("the user is redirected back to the login window", async () => {
-     await expect(LoginPage.inputEmail).toBeDisplayed({ timeout: 7000 });
+     await expect(LoginPage.inputEmail).toBeDisplayed({ timeout: 5000 });
 
 });
 

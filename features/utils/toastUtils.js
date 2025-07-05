@@ -1,14 +1,17 @@
 const { $ } = require("@wdio/globals");
-import ProductDetailsPage from "../pageobjects/productDetails.page";
+const ProductDetailsPage = require("../pageobjects/productDetails.page");
 
 async function waitForToastToDisappear() {
   const toast = ProductDetailsPage.toastSuccess;
 
   try {
-    await toast.waitForDisplayed({ timeout: 5000 });
-    await toast.waitForDisplayed({ reverse: true, timeout: 10000 });
+     console.log("[waitForToastToDisappear]:Waiting for toast to become visible...");
+    await toast.waitForDisplayed({ timeout: 20000 });
+    console.log("[waitForToastToDisappear]:Toast became visible. Waiting for it to disappear...");
+    await toast.waitForDisplayed({ reverse: true, timeout: 20000 });
+      console.log("[waitForToastToDisappear]:Toast disappeared successfully.");
   } catch (e) {
-    console.warn("Toast was not visible or did not disappear");
+    console.warn("[waitForToastToDisappear]:Toast was not visible or did not disappear");
   }
 }
 

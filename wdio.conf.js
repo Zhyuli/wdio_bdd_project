@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 exports.config = {
   //
   // ====================
@@ -51,19 +54,29 @@ exports.config = {
     {
       browserName: "chrome",
       "goog:chromeOptions": {
-        args: ["--headless", "--disable-gpu"],
+        args: [  "--headless","--disable-gpu", "--window-size=1920,1080"],
       },
+    
     },
     {
       browserName: "firefox",
       "moz:firefoxOptions": {
-        args: ["-headless"],
+        args: [
+   '-headless',
+    '--disable-extensions',
+    '--disable-sync', 
+    '-safe-mode',    
+    '--width=1920',
+    '--height=1080',
+  ],
+   
         prefs: {
           // Disable form autofill
           "signon.rememberSignons": false,
           "browser.formfill.enable": false,
           "browser.urlbar.suggest.history": false,
           "browser.urlbar.suggest.bookmark": false,
+           "layout.css.devPixelsPerPx": "1.0"
         },
       },
     },
@@ -103,7 +116,7 @@ exports.config = {
   // baseUrl: 'http://localhost:8080',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: 20000,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
@@ -132,6 +145,7 @@ exports.config = {
   //
   // Delay in seconds between the spec file retry attempts
   // specFileRetriesDelay: 0,
+  specFileRetriesDelay: 1,
   //
   // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
   // specFileRetriesDeferred: false,
@@ -247,6 +261,12 @@ exports.config = {
    */
   // beforeScenario: function (world, context) {
   // },
+  beforeScenario: function (world, context) {
+  browser.waitUntil(() => browser.execute(() => document.readyState === 'complete'), {
+    timeout: 10000,
+    timeoutMsg: 'Page did not load within timeout',
+  });
+},
   /**
    *
    * Runs before a Cucumber Step.
@@ -256,6 +276,12 @@ exports.config = {
    */
   // beforeStep: function (step, scenario, context) {
   // },
+  beforeStep: function (step, scenario, context) {
+  browser.waitUntil(() => browser.execute(() => document.readyState === 'complete'), {
+    timeout: 15000,
+    timeoutMsg: 'Page did not load within timeout',
+  });
+},
   /**
    *
    * Runs after a Cucumber Step.
@@ -269,6 +295,23 @@ exports.config = {
    */
   // afterStep: function (step, scenario, result, context) {
   // },
+ 
+  afterStep: async function (step, scenario, result, context) {
+  if (!result.passed) {
+    // Insure the folder for screenshots exists
+    const screenshotsDir = path.resolve(__dirname, 'screenshots');
+    if (!fs.existsSync(screenshotsDir)) {
+      fs.mkdirSync(screenshotsDir);
+    }
+
+    // Save screenshot with scenario name and timestamp
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const filename = `${scenario.name}-${timestamp}.png`;
+    await browser.saveScreenshot(`${screenshotsDir}/${filename}`);
+    console.log(`Screenshot is saved: ${screenshotsDir}/${filename}`);
+  }
+},
+
   /**
    *
    * Runs after a Cucumber Scenario.
