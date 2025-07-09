@@ -1,4 +1,5 @@
 const Page = require("./page");
+const { waitForToastToDisappear } = require("../utils/toastUtils");
 
 class ProductDetailsPage extends Page {
   get productTitle() {
@@ -23,10 +24,7 @@ class ProductDetailsPage extends Page {
 
   async addToFavorites() {
     await this.addToFavoritesButton.click();
-    const toast = await this.toastSuccess;
-    if (await toast.isDisplayed()) {
-      await toast.waitForDisplayed({ reverse: true, timeout: 10000 });
-    }
+    await waitForToastToDisappear();
   }
 
   async isAtProductPage() {
@@ -39,7 +37,6 @@ class ProductDetailsPage extends Page {
   }
 
   async open(productId) {
-    // const productId = '01JYVGV7NND5XCEKKNFC61P1TM';
     return super.open(`/product/${productId}`);
   }
 }

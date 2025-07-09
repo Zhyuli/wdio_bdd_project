@@ -19,6 +19,7 @@ class HomePage extends Page {
     }
 
     async goToLogin() {
+        await this.signInLink.waitForDisplayed({ timeout: 10000 });
         await this.signInLink.click();
     }
 

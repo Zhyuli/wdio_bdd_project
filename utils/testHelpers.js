@@ -15,6 +15,7 @@ async function loginAndClickOnProduct() {
   await AccountPage.goToHomePage();
   await HomePage.clickOnProduct();
 }
+
 async function assertUnauthorizedFavoriteMessage() {
   await expect(ProductDetailsPage.toastError).toBeDisplayed();
   await expect(ProductDetailsPage.toastError).toHaveText(

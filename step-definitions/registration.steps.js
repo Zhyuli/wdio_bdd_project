@@ -2,8 +2,8 @@ const { Given, When, Then } = require('@wdio/cucumber-framework');
 const HomePage = require("../pageobjects/home.page");
 const LoginPage = require("../pageobjects/login.page");
 const RegisterPage = require('../pageobjects/register.page.js');
-const AccountPage = require('../pageobjects/account.page')
-const { validUser } = require('../data/userData');
+const AccountPage = require('../pageobjects/account.page');
+const { validUser } = require('../data/userData.js');
 
 Given("the user opens the website", async () => {
   await HomePage.open();
@@ -27,7 +27,7 @@ Then("submits the registration form", async () => {
 });
 
 Then("the user is redirected back to the login window", async () => {
-     await expect(LoginPage.inputEmail).toBeDisplayed({ timeout: 7000 });
+     await expect(LoginPage.inputEmail).toBeDisplayed({ timeout: 5000 });
 
 });
 
