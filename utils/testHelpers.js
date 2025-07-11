@@ -1,4 +1,3 @@
-
 const LoginPage = require("../pageobjects/login.page");
 const AccountPage = require("../pageobjects/account.page");
 const HomePage = require("../pageobjects/home.page");
@@ -30,16 +29,18 @@ async function assertFavoriteSuccessMessage() {
     "Product added to your favorites list.",
     "Product already in your favorites list.",
   ];
-  expect(validMessages).toContain(messageText);
-}
+  // Previous version using WebdriverIO-style expect:
+  // expect(validMessages).toContain(messageText);
 
+  // Chai assertions
+  expectChai(validMessages).to.include(messageText);
+  validMessages.should.include(messageText);
+}
 
 async function goToFavorites() {
   await HeaderPage.openFavorites();
   await FavoritesPage.isAtFavoritesPage();
 }
-
-
 
 module.exports = {
   loginAndClickOnProduct,
