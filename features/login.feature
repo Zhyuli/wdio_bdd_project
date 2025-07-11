@@ -14,6 +14,7 @@ Feature: User login functionality
     And the message "Password is required" is displayed
     And the user remains on the login form
 
+
   Scenario: Failed login with incorrect password
     Given the user is on the login form
     When the user enters a correct email
