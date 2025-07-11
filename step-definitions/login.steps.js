@@ -19,6 +19,8 @@ When("the user submits the form", async () => {
 Then('the message "Invalid email or password" is displayed', async () => {
   await (await LoginPage.loginErrorMessage).waitForDisplayed({ timeout: 7000 });
   await expect(LoginPage.loginErrorMessage).toBeDisplayed();
+
+  // Previous version using WebdriverIO-style expect:
   // await expect(LoginPage.loginErrorMessage).toHaveText(
   //   "Invalid email or password"
   // );
@@ -47,6 +49,8 @@ Then('the message "Email is required" is displayed', async () => {
     await LoginPage.emailRequiredMessage
   ).waitForDisplayed({ timeout: 5000 });
   await expect(LoginPage.emailRequiredMessage).toBeDisplayed();
+
+  // Previous version using WebdriverIO-style expect:
   // await expect(LoginPage.emailRequiredMessage).toHaveText("Email is required");
   const emailRequiredMessageText =
     await LoginPage.emailRequiredMessage.getText();
@@ -61,12 +65,15 @@ Then('the message "Password is required" is displayed', async () => {
     await LoginPage.passwordRequiredMessage
   ).waitForDisplayed({ timeout: 5000 });
   await expect(LoginPage.passwordRequiredMessage).toBeDisplayed();
+
+  // Previous version using WebdriverIO-style expect:
   // await expect(LoginPage.passwordRequiredMessage).toHaveText(
   //   "Password is required"
   // );
 
-  const passwordRequiredMessageText = await LoginPage.passwordRequiredMessage.getText();
-    
+  const passwordRequiredMessageText =
+    await LoginPage.passwordRequiredMessage.getText();
+
   // Chai assertions
   expectChai(passwordRequiredMessageText).to.equal("Password is required");
   passwordRequiredMessageText.should.equal("Password is required");

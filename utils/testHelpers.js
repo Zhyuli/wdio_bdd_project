@@ -20,6 +20,14 @@ async function assertUnauthorizedFavoriteMessage() {
   await expect(ProductDetailsPage.toastError).toHaveText(
     "Unauthorized, can not add product to your favorite list."
   );
+  // Chai assertions
+  const errorText = await ProductDetailsPage.toastError.getText();
+  expectChai(errorText).to.equal(
+    "Unauthorized, can not add product to your favorite list."
+  );
+  errorText.should.equal(
+    "Unauthorized, can not add product to your favorite list."
+  );
 }
 
 async function assertFavoriteSuccessMessage() {
