@@ -1,5 +1,5 @@
 const { $ } = require("@wdio/globals");
-const ProductDetailsPage = require("../pageobjects/productDetails.page");
+const ProductDetailsPage = require("../../business/pageobjects/productDetails.page");
 
 async function waitForToastToDisappear() {
   const toast = ProductDetailsPage.toastSuccess;

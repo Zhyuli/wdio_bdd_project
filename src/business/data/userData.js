@@ -2,7 +2,7 @@ module.exports = {
   validUser: {
     firstName: "John",
     lastName: "Doe",
-    dob: "01.01.1991",
+    dob: "1991-01-01",
     street: "Main Street 1",
     postcode: "12345",
     city: "Kyiv",

@@ -4,7 +4,7 @@ const path = require("path");
 exports.config = {
   runner: "local",
 
-  specs: ["./features/**/*.feature"],
+  specs: ["../../tests/**/*.feature"],
 
   maxInstances: 10,
 
@@ -57,7 +57,7 @@ exports.config = {
   reporters: ["spec"],
 
   cucumberOpts: {
-    require: ["./step-definitions/**/*.js"],
+    require: ["./src/business/step-definitions/**/*.js"],
 
     backtrace: false,
 
@@ -82,7 +82,9 @@ exports.config = {
     ignoreUndefinedDefinitions: false,
   },
 before: function () {
-  require('./setup/assertions');
+ //require('./src/business/setup/assertions');
+ const assertionPath = path.resolve(__dirname, "../../business/setup/assertions");
+  require(assertionPath);
 },
 
   beforeScenario: function (world, context) {
@@ -107,7 +109,7 @@ before: function () {
 
   afterStep: async function (step, scenario, result, context) {
     if (!result.passed) {
-      const screenshotsDir = path.resolve(__dirname, "screenshots");
+      const screenshotsDir = path.resolve(__dirname, "../../../artifacts/screenshots");
       if (!fs.existsSync(screenshotsDir)) {
         fs.mkdirSync(screenshotsDir);
       }
