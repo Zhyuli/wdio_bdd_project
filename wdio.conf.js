@@ -81,6 +81,9 @@ exports.config = {
 
     ignoreUndefinedDefinitions: false,
   },
+before: function () {
+  require('./setup/assertions');
+},
 
   beforeScenario: function (world, context) {
     browser.waitUntil(
