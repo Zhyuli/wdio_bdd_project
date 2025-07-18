@@ -20,7 +20,6 @@ class FavoritesPage extends Page {
   }
 
   async removeFromFavorites() {
-    // await this.removeBtn.click();
     console.log("Waiting for delete button...");
     await this.removeBtn.waitForDisplayed({ timeout: 15000 });
 

@@ -37,6 +37,5 @@ Then("can log in using the registered email and password", async () => {
 
   // Chai assertions (expect + should) to verify account page title
   const accountPageTitle = await AccountPage.pageTitle.getText();
-  expectChai(accountPageTitle).to.equal("My account");
   accountPageTitle.should.equal("My account");
 });
