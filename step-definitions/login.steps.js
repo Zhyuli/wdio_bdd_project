@@ -22,8 +22,13 @@ Then('the message "Invalid email or password" is displayed', async () => {
 
   const emailErrorText = await LoginPage.loginErrorMessage.getText();
 
-  // Chai assertions
-  emailErrorText.should.equal("Invalid email or password");
+  // Chai assertions assert.equal
+
+  assert.equal(
+    emailErrorText,
+    "Invalid email or password",
+    "Error message does not match"
+  );
 });
 
 Then("the user remains on the login form", async () => {
@@ -49,7 +54,6 @@ Then('the message "Email is required" is displayed', async () => {
     await LoginPage.emailRequiredMessage.getText();
 
   // Chai assertions
-
   emailRequiredMessageText.should.equal("Email is required");
 });
 
@@ -62,9 +66,13 @@ Then('the message "Password is required" is displayed', async () => {
   const passwordRequiredMessageText =
     await LoginPage.passwordRequiredMessage.getText();
 
-  // Chai assertions
+  // Chai assertions expect
 
-  passwordRequiredMessageText.should.equal("Password is required");
+  assert.equal(
+    passwordRequiredMessageText,
+    "Password is required",
+    "Password error message does not match"
+  );
 });
 
 When("the user enters a correct email", async () => {

@@ -36,7 +36,6 @@ async function assertFavoriteSuccessMessage() {
   ];
 
   // Chai assertions
-
   validMessages.should.include(messageText);
 }
 
