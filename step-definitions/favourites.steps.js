@@ -12,8 +12,6 @@ const {
   goToFavorites,
 } = require("../utils/testHelpers");
 
-
-
 //Scenario: Attempting to add a product to favourites without being logged in
 
 Given("the user is on the home page", async () => {

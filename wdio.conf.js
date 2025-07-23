@@ -107,7 +107,7 @@ before: function () {
 
   afterStep: async function (step, scenario, result, context) {
     if (!result.passed) {
-      const screenshotsDir = path.resolve(__dirname, "screenshots");
+      const screenshotsDir = path.resolve(__dirname, "artifacts", "screenshots");
       if (!fs.existsSync(screenshotsDir)) {
         fs.mkdirSync(screenshotsDir);
       }

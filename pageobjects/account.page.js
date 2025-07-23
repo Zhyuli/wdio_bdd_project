@@ -18,7 +18,7 @@ class AccountPage extends Page {
   async isAtAccountPage() {
     try {
       await this.pageTitle.waitForDisplayed({ timeout: 10000 });
-      // await expect(this.pageTitle).toHaveText("My account");
+
       const title = await this.pageTitle.getText();
       expect(title).toBe("My account");
     } catch (error) {

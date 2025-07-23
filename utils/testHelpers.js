@@ -25,9 +25,6 @@ async function assertUnauthorizedFavoriteMessage() {
   expectChai(errorText).to.equal(
     "Unauthorized, can not add product to your favorite list."
   );
-  errorText.should.equal(
-    "Unauthorized, can not add product to your favorite list."
-  );
 }
 
 async function assertFavoriteSuccessMessage() {
@@ -37,11 +34,8 @@ async function assertFavoriteSuccessMessage() {
     "Product added to your favorites list.",
     "Product already in your favorites list.",
   ];
-  // Previous version using WebdriverIO-style expect:
-  // expect(validMessages).toContain(messageText);
 
   // Chai assertions
-  expectChai(validMessages).to.include(messageText);
   validMessages.should.include(messageText);
 }
 

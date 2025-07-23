@@ -2,16 +2,15 @@ const { $ } = require("@wdio/globals");
 const Page = require("./page");
 const { waitForToastToDisappear } = require("../utils/toastUtils");
 
-class HeaderPage extends Page  {
-
+class HeaderPage extends Page {
   get userNameLabel() {
-    return $('#menu');
+    return $("#menu");
   }
   get favoritesLink() {
-  return $('[data-test="nav-my-favorites"]');
-}
+    return $('[data-test="nav-my-favorites"]');
+  }
 
- async openFavorites() {
+  async openFavorites() {
     await waitForToastToDisappear();
     await this.userNameLabel.waitForClickable({ timeout: 5000 });
     await this.userNameLabel.click();
@@ -19,7 +18,6 @@ class HeaderPage extends Page  {
     await this.favoritesLink.waitForDisplayed({ timeout: 5000 });
     await this.favoritesLink.click();
   }
-
 }
 
 module.exports = new HeaderPage();
