@@ -1,5 +1,5 @@
 const Page = require("./page");
-const { waitForToastToDisappear } = require("../utils/toastUtils");
+const { waitForToastToDisappear } = require("../../core/utils/toastUtils");
 
 class ProductDetailsPage extends Page {
   get productTitle() {
