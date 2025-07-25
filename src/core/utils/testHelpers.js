@@ -1,11 +1,11 @@
-const LoginPage = require("../pageobjects/login.page");
-const AccountPage = require("../pageobjects/account.page");
-const HomePage = require("../pageobjects/home.page");
-const ProductDetailsPage = require("../pageobjects/productDetails.page");
-const HeaderPage = require("../pageobjects/header.page");
-const FavoritesPage = require("../pageobjects/favorites.page");
+const LoginPage = require("../../business/pageobjects/login.page");
+const AccountPage = require("../../business/pageobjects/account.page");
+const HomePage = require("../../business/pageobjects/home.page");
+const ProductDetailsPage = require("../../business/pageobjects/productDetails.page");
+const HeaderPage = require("../../business/pageobjects/header.page");
+const FavoritesPage = require("../../business/pageobjects/favorites.page");
 
-const { validUser } = require("../data/loginData");
+const { validUser } = require("../../business/data/loginData");
 
 async function loginAndClickOnProduct() {
   await LoginPage.open();

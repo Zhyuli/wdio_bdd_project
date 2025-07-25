@@ -4,7 +4,7 @@ const path = require("path");
 exports.config = {
   runner: "local",
 
-  specs: ["./features/**/*.feature"],
+  specs: ["../../tests/**/*.feature"],
 
   maxInstances: 10,
 
@@ -57,7 +57,9 @@ exports.config = {
   reporters: ["spec"],
 
   cucumberOpts: {
-    require: ["./step-definitions/**/*.js"],
+    // require: ["../../business/step-definitions/**/*.js"],
+    require: [path.resolve(__dirname, '../../business/step-definitions/**/*.js')],
+    
 
     backtrace: false,
 
@@ -82,7 +84,7 @@ exports.config = {
     ignoreUndefinedDefinitions: false,
   },
 before: function () {
-  require('./setup/assertions');
+  require('../setup/assertions');
 },
 
   beforeScenario: function (world, context) {

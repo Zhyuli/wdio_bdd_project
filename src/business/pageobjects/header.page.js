@@ -1,6 +1,6 @@
 const { $ } = require("@wdio/globals");
 const Page = require("./page");
-const { waitForToastToDisappear } = require("../utils/toastUtils");
+const { waitForToastToDisappear } = require("../../core/utils/toastUtils");
 
 class HeaderPage extends Page {
   get userNameLabel() {
