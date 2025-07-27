@@ -1,7 +1,7 @@
 const { $ } = require("@wdio/globals");
 const Page = require("./page");
 const HomePage = require("./home.page");
-const HeaderComponent = require("./components/header.component");
+const HeaderComponent = require("../components/header.component");
 
 class AccountPage extends Page {
   get pageTitle() {
@@ -27,8 +27,7 @@ class AccountPage extends Page {
 
   async openFavoritesPage() {
     await this.isAtAccountPage();
-
-    await HeaderComponent.goToFavorites();
+    await HeaderComponent.openFavoritesDropdown();
   }
   async open() {
     return super.open("/account");

@@ -1,9 +1,11 @@
-const LoginPage = require("../../business/pageobjects/login.page");
-const AccountPage = require("../../business/pageobjects/account.page");
-const HomePage = require("../../business/pageobjects/home.page");
-const ProductDetailsPage = require("../../business/pageobjects/productDetails.page");
-const HeaderPage = require("../../business/pageobjects/header.page");
-const FavoritesPage = require("../../business/pageobjects/favorites.page");
+const LoginPage = require("../../business/pageobjects/pages/login.page");
+const AccountPage = require("../../business/pageobjects/pages/account.page");
+const HomePage = require("../../business/pageobjects/pages/home.page");
+const ProductDetailsPage = require("../../business/pageobjects/pages/productDetails.page");
+// const HeaderPage = require("../../business/pageobjects/pages/header.page");
+const HeaderComponent = require("../../business/pageobjects/components/header.component");
+const FavoritesPage = require("../../business/pageobjects/pages/favorites.page");
+const {waitForToastToDisappear} = require("../../core/utils/toastUtils");
 
 const { validUser } = require("../../business/data/loginData");
 
@@ -40,7 +42,12 @@ async function assertFavoriteSuccessMessage() {
 }
 
 async function goToFavorites() {
-  await HeaderPage.openFavorites();
+  await waitForToastToDisappear(
+    ProductDetailsPage.toastSuccess,
+    ProductDetailsPage.toastError
+  );
+
+  await HeaderComponent.openFavoritesDropdown;
   await FavoritesPage.isAtFavoritesPage();
 }
 

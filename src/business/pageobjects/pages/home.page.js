@@ -1,6 +1,6 @@
 const { $ } = require("@wdio/globals");
 const Page = require("./page");
-const HeaderComponent = require("./components/header.component");
+const HeaderComponent = require("../components/header.component");
 
 class HomePage extends Page {
   get firstProduct() {

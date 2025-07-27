@@ -6,7 +6,7 @@
   "scripts": {
     "test": "wdio run ./src/core/config/wdio.conf.js",
     "wdio": "wdio run ./wdio.conf.js",
-    "test:smoke": "wdio run wdio.conf.js --cucumberOpts.tagExpression='@smoke'"
+    "test:smoke": "wdio run ./src/core/config/wdio.conf.js --cucumberOpts.tagExpression='@smoke'"
   },
   "keywords": [],
   "author": "",

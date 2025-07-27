@@ -1,5 +1,5 @@
 const Page = require("./page");
-const { waitForToastToDisappear } = require("../../core/utils/toastUtils");
+const { waitForToastToDisappear } = require("../../../core/utils/toastUtils");
 
 class ProductDetailsPage extends Page {
   get productTitle() {
@@ -13,18 +13,17 @@ class ProductDetailsPage extends Page {
   get addToFavoritesButton() {
     return $("#btn-add-to-favorites");
   }
-
-  get toastError() {
-    return $(".toast-message");
+get toastSuccess() {
+    return $('div[role="alert"].toast-message');
   }
-
-  get toastSuccess() {
-    return $('div.toast-message[role="alert"]');
+  get toastError() {
+    return $('div[role="alert"].toast-message');
   }
 
   async addToFavorites() {
     await this.addToFavoritesButton.click();
-    await waitForToastToDisappear();
+
+    await waitForToastToDisappear(this.toastSuccess);
   }
 
   async isAtProductPage() {
