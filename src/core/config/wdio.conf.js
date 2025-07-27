@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { beforeStep, beforeScenario, afterStep } = require("../hooks/hooks.js");
 
 exports.config = {
   runner: "local",
@@ -57,9 +58,9 @@ exports.config = {
   reporters: ["spec"],
 
   cucumberOpts: {
-    // require: ["../../business/step-definitions/**/*.js"],
-    require: [path.resolve(__dirname, '../../business/step-definitions/**/*.js')],
-    
+    require: [
+      path.resolve(__dirname, "../../business/step-definitions/**/*.js"),
+    ],
 
     backtrace: false,
 
@@ -83,41 +84,10 @@ exports.config = {
 
     ignoreUndefinedDefinitions: false,
   },
-before: function () {
-  require('../setup/assertions');
-},
-
-  beforeScenario: function (world, context) {
-    browser.waitUntil(
-      () => browser.execute(() => document.readyState === "complete"),
-      {
-        timeout: 10000,
-        timeoutMsg: "Page did not load within timeout",
-      }
-    );
+  before: function () {
+    require("../setup/assertions");
   },
-
-  beforeStep: function (step, scenario, context) {
-    browser.waitUntil(
-      () => browser.execute(() => document.readyState === "complete"),
-      {
-        timeout: 15000,
-        timeoutMsg: "Page did not load within timeout",
-      }
-    );
-  },
-
-  afterStep: async function (step, scenario, result, context) {
-    if (!result.passed) {
-      const screenshotsDir = path.resolve(__dirname, "artifacts", "screenshots");
-      if (!fs.existsSync(screenshotsDir)) {
-        fs.mkdirSync(screenshotsDir);
-      }
-
-      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-      const filename = `${scenario.name}-${timestamp}.png`;
-      await browser.saveScreenshot(`${screenshotsDir}/${filename}`);
-      console.log(`Screenshot is saved: ${screenshotsDir}/${filename}`);
-    }
-  },
+  beforeScenario,
+  beforeStep,
+  afterStep,
 };
