@@ -23,7 +23,7 @@ const beforeStep = function (step, scenario, context) {
 
 const afterStep = async function (step, scenario, result, context) {
   if (!result.passed) {
-    const screenshotsDir = path.resolve(__dirname, "../artifacts/screenshots");
+    const screenshotsDir = path.resolve(__dirname, "../../../artifacts/screenshots");
     if (!fs.existsSync(screenshotsDir)) {
       fs.mkdirSync(screenshotsDir, { recursive: true });
     }
