@@ -1,4 +1,4 @@
-
+@smoke
 Feature: Add to favourites functionality
 
 Scenario: Attempting to add a product to favourites without being logged in

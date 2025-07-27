@@ -1,16 +1,14 @@
 const { Given, When, Then } = require("@wdio/cucumber-framework");
-
-const HomePage = require("../pageobjects/home.page");
-
-const ProductDetailsPage = require("../pageobjects/productDetails.page");
-const FavoritesPage = require("../pageobjects/favorites.page");
+const HomePage = require("../pageobjects/pages/home.page");
+const ProductDetailsPage = require("../pageobjects/pages/productDetails.page");
+const FavoritesPage = require("../pageobjects/pages/favorites.page");
 
 const {
   loginAndClickOnProduct,
   assertFavoriteSuccessMessage,
   assertUnauthorizedFavoriteMessage,
   goToFavorites,
-} = require("../utils/testHelpers");
+} = require("../../core/utils/testHelpers");
 
 //Scenario: Attempting to add a product to favourites without being logged in
 
